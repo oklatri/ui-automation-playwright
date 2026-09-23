@@ -1,5 +1,7 @@
 # UI Automation — Playwright
 
+[![Playwright Tests](https://github.com/oklatri/ui-automation-playwright/actions/workflows/playwright.yml/badge.svg)](https://github.com/oklatri/ui-automation-playwright/actions/workflows/playwright.yml)
+
 Проект **автотестов** для UI-тестирования сайта [SauceDemo](https://www.saucedemo.com/) на **Playwright**.
 
 ## Что это
