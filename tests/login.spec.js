@@ -21,13 +21,13 @@ test.describe('Login', () => {
     expect(error).toContain('Sorry, this user has been locked out');
   });
 
-  test('TC-003: Login with invalid credentials', async () => {
+  test('TC-017: Login with invalid credentials', async () => {
     await loginPage.login('invalid_user', 'wrong_password');
     const error = await loginPage.getErrorMessage();
     expect(error).toContain('Username and password do not match');
   });
 
-  test('TC-004: Login with empty fields', async () => {
+  test('TC-018: Login with empty fields', async () => {
     await loginPage.login('', '');
     const error = await loginPage.getErrorMessage();
     expect(error).toContain('Username is required');

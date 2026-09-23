@@ -15,13 +15,13 @@ test.describe('Cart', () => {
     await loginPage.login('standard_user', 'secret_sauce');
   });
 
-  test('TC-005: Add one item to cart', async () => {
+  test('TC-007: Add one item to cart', async () => {
     await inventoryPage.addToCart('Sauce Labs Backpack');
     const count = await inventoryPage.getCartCount();
     expect(count).toBe(1);
   });
 
-  test('TC-006: Add multiple items to cart', async () => {
+  test('TC-009: Add multiple items to cart', async () => {
     await inventoryPage.addToCart('Sauce Labs Backpack');
     await inventoryPage.addToCart('Sauce Labs Bike Light');
     await inventoryPage.addToCart('Sauce Labs Bolt T-Shirt');
@@ -29,14 +29,14 @@ test.describe('Cart', () => {
     expect(count).toBe(3);
   });
 
-  test('TC-007: Remove item from cart', async () => {
+  test('TC-008: Remove item from cart', async () => {
     await inventoryPage.addToCart('Sauce Labs Backpack');
     await inventoryPage.removeFromCart('Sauce Labs Backpack');
     const count = await inventoryPage.getCartCount();
     expect(count).toBe(0);
   });
 
-  test('TC-008: Cart shows added items', async () => {
+  test('TC-016: Cart shows added items', async () => {
     await inventoryPage.addToCart('Sauce Labs Backpack');
     await inventoryPage.addToCart('Sauce Labs Bike Light');
     await inventoryPage.goToCart();
