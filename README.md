@@ -6,19 +6,26 @@
 
 ## Что это
 
-Автотесты **проверяют** **логин** на SauceDemo: валидные и невалидные данные, заблокированный пользователь, пустые поля.
+Автотесты **проверяют**:
+- **Логин** — валидные и невалидные данные, заблокированный пользователь, пустые поля.
+- **Корзину** — добавление, удаление, счётчик, отображение товаров.
 
 ## Инструменты
 
 - **Playwright** (автотесты UI)
 - **JavaScript** (Node.js)
 - **Page Object Model** (POM)
+- **GitHub Actions** (CI/CD)
 
 ## Что внутри
 
+- `.github/workflows/playwright.yml` — CI-конфиг для GitHub Actions
 - `tests/login.spec.js` — **4 автотеста** для логина
-- `pages/LoginPage.js` — **Page Object** для страницы логина
-- `playwright.config.js` — **конфиг** Playwright
+- `tests/cart.spec.js` — **4 автотеста** для корзины
+- `pages/LoginPage.js` — Page Object для страницы логина
+- `pages/InventoryPage.js` — Page Object для каталога товаров
+- `pages/CartPage.js` — Page Object для корзины
+- `playwright.config.js` — конфиг Playwright
 
 ## Тесты
 
@@ -26,12 +33,12 @@
 |---|---|---|
 | TC-001 | Login with standard_user | Успешный логин |
 | TC-002 | Login with locked_out_user | Заблокированный пользователь |
-| TC-003 | Login with invalid credentials | Неверные данные |
-| TC-004 | Login with empty fields | Пустые поля |
-| TC-005 | Add one item to cart | Добавление одного товара |
-| TC-006 | Add multiple items to cart | Добавление нескольких товаров |
-| TC-007 | Remove item from cart | Удаление товара из корзины |
-| TC-008 | Cart shows added items | Отображение товаров в корзине |
+| TC-017 | Login with invalid credentials | Неверные данные |
+| TC-018 | Login with empty fields | Пустые поля |
+| TC-007 | Add one item to cart | Добавление одного товара |
+| TC-009 | Add multiple items to cart | Добавление нескольких товаров |
+| TC-008 | Remove item from cart | Удаление товара из корзины |
+| TC-016 | Cart shows added items | Отображение товаров в корзине |
 
 ## Как запустить
 
@@ -55,6 +62,16 @@
    npx playwright show-report
    ```
 
+## CI/CD
+
+При **каждом** **push** **в** **ветку** `main` **GitHub** **Actions** **автоматически**:
+1. **Устанавливает** **зависимости**.
+2. **Устанавливает** **браузеры** **Playwright**.
+3. **Запускает** **8** **тестов**.
+4. **Сохраняет** **HTML-отчёт** (**в** **Artifacts**).
+
+**Статус** **CI**: **см.** **badge** **сверху**.
+
 ## Результаты
 
 ```
@@ -66,10 +83,16 @@ Running 8 tests using 8 workers
 
 ```
 ui-automation-playwright/
+├── .github/
+│   └── workflows/
+│       └── playwright.yml
 ├── pages/
-│   └── LoginPage.js
+│   ├── LoginPage.js
+│   ├── InventoryPage.js
+│   └── CartPage.js
 ├── tests/
-│   └── login.spec.js
+│   ├── login.spec.js
+│   └── cart.spec.js
 ├── playwright.config.js
 ├── package.json
 └── .gitignore
